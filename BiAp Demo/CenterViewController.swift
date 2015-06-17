@@ -44,11 +44,26 @@ enum ConsoleDataType{
     case TX
 }
 
+// slide out
+@objc
+protocol CenterViewControllerDelegate {
+    optional func toggleLeftPanel()
+    optional func toggleRightPanel()
+    optional func collapseSidePanels()
+}
+
 /*********************
 *** ViewController
 *********************/
 
 class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, CBCentralManagerDelegate, UARTPeripheralDelegate {
+    // slide out
+    var delegate: CenterViewControllerDelegate?
+    @IBAction func puppiesTapped(sender: AnyObject) {
+        println("toggleRightPanel")
+        delegate?.toggleRightPanel?()
+    }
+    @IBOutlet weak var backButton: UIButton!
     
     @IBOutlet weak var yodaPicture: UIImageView!
     @IBOutlet weak var yodaHealth: UILabel!
@@ -124,17 +139,6 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, CBCent
         refreshGraph()
         
     }
-
-    // Edge Swipe to reveal hidden settigns
-    @IBOutlet var edgeGesture: UIScreenEdgePanGestureRecognizer!
-    @IBAction func edgeAction(sender: UIScreenEdgePanGestureRecognizer) {
-        if sender.state == UIGestureRecognizerState.Began {
-            println("started")
-        }
-        else if sender.state == UIGestureRecognizerState.Ended {
-            println("ended")
-        }
-    }
     
     // Double Tap Gesture to Play/Pause Graph
     @IBOutlet var doubleTapGesture: UITapGestureRecognizer!
@@ -182,11 +186,8 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, CBCent
         panGesture.minimumNumberOfTouches = 2
         panGesture.maximumNumberOfTouches = 2
         
-        // screen edge gesture
-        edgeGesture = UIScreenEdgePanGestureRecognizer(target: self,
-            action: "edgeAction:")
-        edgeGesture.edges = UIRectEdge.Right
-        self.view.addGestureRecognizer(edgeGesture)
+        // settings 4 finger swipe
+        backButton.alpha = 0
         
     }
     

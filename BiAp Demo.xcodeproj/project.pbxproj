@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B646A62D1B31AEC3006262BA /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B646A62C1B31AEC3006262BA /* ContainerViewController.swift */; };
+		B646A6331B31AF01006262BA /* SidePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B646A6321B31AF01006262BA /* SidePanelViewController.swift */; };
 		B681BBBA1B29CFF9004AF075 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B681BBB91B29CFF9004AF075 /* AppDelegate.swift */; };
 		B681BBBC1B29CFF9004AF075 /* CenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B681BBBB1B29CFF9004AF075 /* CenterViewController.swift */; };
 		B681BBBF1B29CFF9004AF075 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B681BBBD1B29CFF9004AF075 /* Main.storyboard */; };
@@ -58,6 +60,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B646A62C1B31AEC3006262BA /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		B646A6321B31AF01006262BA /* SidePanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidePanelViewController.swift; sourceTree = "<group>"; };
 		B681BBB41B29CFF9004AF075 /* BiAp Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BiAp Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B681BBB81B29CFF9004AF075 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B681BBB91B29CFF9004AF075 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -154,6 +158,8 @@
 				B681BBEB1B29D372004AF075 /* MealLibraryTableViewController.swift */,
 				B697F0941B2CFD07002FF84C /* MealDetailViewController.swift */,
 				B681BBBB1B29CFF9004AF075 /* CenterViewController.swift */,
+				B646A62C1B31AEC3006262BA /* ContainerViewController.swift */,
+				B646A6321B31AF01006262BA /* SidePanelViewController.swift */,
 				B681BBBD1B29CFF9004AF075 /* Main.storyboard */,
 				B681BBE81B29D0EF004AF075 /* External Libraries */,
 				B681BBC01B29CFF9004AF075 /* Images.xcassets */,
@@ -401,8 +407,10 @@
 				B681BBBC1B29CFF9004AF075 /* CenterViewController.swift in Sources */,
 				B681BC331B29F613004AF075 /* BEMLine.m in Sources */,
 				B681BC161B29D82D004AF075 /* food.swift in Sources */,
+				B646A6331B31AF01006262BA /* SidePanelViewController.swift in Sources */,
 				B681BBBA1B29CFF9004AF075 /* AppDelegate.swift in Sources */,
 				B697F0951B2CFD07002FF84C /* MealDetailViewController.swift in Sources */,
+				B646A62D1B31AEC3006262BA /* ContainerViewController.swift in Sources */,
 				B681BC341B29F613004AF075 /* BEMPermanentPopupView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
