@@ -10,5 +10,6 @@
 #define _BiAp_Demo_Bridging_Header_h
 
 #import "BEMSimpleLineGraphView.h"
+#import "UARTPeripheral.h"
 
 #endif

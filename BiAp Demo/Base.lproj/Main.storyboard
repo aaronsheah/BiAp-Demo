@@ -5,20 +5,20 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Center View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="BiAp_Demo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="CenterViewController" customModule="BiAp_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M4Z-o5-KQ6">
-                                <rect key="frame" x="-4" y="0.0" width="300" height="600"/>
+                                <rect key="frame" x="-4" y="0.0" width="300" height="768"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="lgu-Cb-6i8"/>
                                 </constraints>
@@ -27,7 +27,8 @@
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wvP-mV-dHB" customClass="BEMSimpleLineGraphView">
-                                <rect key="frame" x="304" y="367" width="288" height="225"/>
+                                <rect key="frame" x="304" y="435" width="712" height="325"/>
+                                <gestureRecognizers/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="colorTop">
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -51,28 +52,100 @@
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="3wT-bd-Bbd"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="zlf-n5-3pG"/>
+                                    <outletCollection property="gestureRecognizers" destination="h4Z-Eh-pEB" appends="YES" id="iYp-aw-EPM"/>
+                                    <outletCollection property="gestureRecognizers" destination="bn8-ip-esS" appends="YES" id="K03-WU-TLI"/>
                                 </connections>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="yoda.png" translatesAutoresizingMaskIntoConstraints="NO" id="7tq-vG-Gqf">
+                                <rect key="frame" x="369" y="-3" width="286" height="419"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Glucose" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="daX-TP-teg">
+                                <rect key="frame" x="675" y="159" width="121" height="30"/>
+                                <fontDescription key="fontDescription" name="STHeitiTC-Light" family="Heiti TC" pointSize="30"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Insulin" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gcW-cL-9mQ">
+                                <rect key="frame" x="710" y="227" width="86" height="30"/>
+                                <fontDescription key="fontDescription" name="STHeitiTC-Light" family="Heiti TC" pointSize="30"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pBs-wI-ADQ">
+                                <rect key="frame" x="824" y="151" width="135" height="45"/>
+                                <fontDescription key="fontDescription" name="STHeitiTC-Light" family="Heiti TC" pointSize="45"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kLg-TK-2Xu">
+                                <rect key="frame" x="824" y="219" width="135" height="45"/>
+                                <fontDescription key="fontDescription" name="STHeitiTC-Light" family="Heiti TC" pointSize="45"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hyperglycaemia" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yya-75-bbj">
+                                <rect key="frame" x="391" y="368" width="242" height="30"/>
+                                <fontDescription key="fontDescription" name="STHeitiTC-Light" family="Heiti TC" pointSize="30"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CGh-FP-2XQ">
+                                <rect key="frame" x="978" y="20" width="30" height="30"/>
+                                <state key="normal" title="Test">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="wvP-mV-dHB" secondAttribute="trailing" constant="-8" id="1Yk-bp-9D8"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="M4Z-o5-KQ6" secondAttribute="bottom" id="Avq-Yw-v3i"/>
                             <constraint firstItem="wvP-mV-dHB" firstAttribute="leading" secondItem="M4Z-o5-KQ6" secondAttribute="trailing" constant="8" id="CM5-E5-6w3"/>
                             <constraint firstItem="M4Z-o5-KQ6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="HmY-X2-vTd"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="wvP-mV-dHB" secondAttribute="bottom" constant="8" id="aUX-TP-Teh"/>
-                            <constraint firstItem="wvP-mV-dHB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="367" id="hxH-fI-s7C"/>
+                            <constraint firstItem="wvP-mV-dHB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="435" id="hxH-fI-s7C"/>
                             <constraint firstItem="M4Z-o5-KQ6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="udR-mU-Phy"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="9iD-dn-j1j" appends="YES" id="1Q4-8T-xbi"/>
+                        </connections>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
+                        <outlet property="doubleTapGesture" destination="bn8-ip-esS" id="kEx-5m-mzN"/>
+                        <outlet property="edgeGesture" destination="9iD-dn-j1j" id="2Yj-fL-x8e"/>
                         <outlet property="glucGraph" destination="wvP-mV-dHB" id="8eA-gj-64u"/>
+                        <outlet property="glucLabel" destination="pBs-wI-ADQ" id="xRA-p8-xQF"/>
+                        <outlet property="insuLabel" destination="kLg-TK-2Xu" id="Fax-Ll-bHa"/>
+                        <outlet property="mealLibraryContainer" destination="M4Z-o5-KQ6" id="HbF-ME-uSW"/>
+                        <outlet property="panGesture" destination="h4Z-Eh-pEB" id="7h7-TL-Vxi"/>
+                        <outlet property="yodaHealth" destination="Yya-75-bbj" id="P0Q-xi-o9U"/>
+                        <outlet property="yodaPicture" destination="7tq-vG-Gqf" id="FJy-oh-2fV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="h4Z-Eh-pEB">
+                    <connections>
+                        <action selector="panAction:" destination="BYZ-38-t0r" id="qGD-Eo-jug"/>
+                    </connections>
+                </panGestureRecognizer>
+                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="9iD-dn-j1j">
+                    <rectEdge key="edges" right="YES"/>
+                    <connections>
+                        <action selector="edgeAction:" destination="BYZ-38-t0r" id="mCQ-aZ-sqp"/>
+                    </connections>
+                </screenEdgePanGestureRecognizer>
+                <tapGestureRecognizer id="bn8-ip-esS">
+                    <connections>
+                        <action selector="doubleTapGesture:" destination="BYZ-38-t0r" id="AEv-c5-C4g"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="346" y="292"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ecu-lr-ueL">
@@ -96,7 +169,7 @@
             <objects>
                 <tableViewController id="I4u-GM-f7W" customClass="MealLibraryTableViewController" customModule="BiAp_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="150" sectionHeaderHeight="22" sectionFooterHeight="22" id="xTs-3D-U7O">
-                        <rect key="frame" x="0.0" y="44" width="300" height="600"/>
+                        <rect key="frame" x="0.0" y="44" width="300" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -106,14 +179,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7mb-wm-53h">
-                                            <rect key="frame" x="0.0" y="94" width="300" height="55.5"/>
+                                            <rect key="frame" x="0.0" y="96" width="300" height="55.5"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="iQG-C9-xZO">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="55.5"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R9b-to-bc8">
                                                         <rect key="frame" x="8" y="8" width="284" height="39.5"/>
-                                                        <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-Book" family="Bodoni 72" pointSize="20"/>
+                                                        <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-Book" family="Bodoni 72" pointSize="25"/>
                                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -131,7 +204,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="nameLabel" destination="R9b-to-bc8" id="fId-VJ-7hX"/>
-                                    <segue destination="sO0-18-3gn" kind="show" id="Icf-aq-vbd"/>
+                                    <segue destination="sO0-18-3gn" kind="show" identifier="showDetail" id="Icf-aq-vbd"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -147,23 +220,154 @@
             </objects>
             <point key="canvasLocation" x="334" y="1208"/>
         </scene>
-        <!--View Controller-->
+        <!--Meal Detail View Controller-->
         <scene sceneID="d9P-CQ-fjM">
             <objects>
-                <viewController id="sO0-18-3gn" sceneMemberID="viewController">
+                <viewController id="sO0-18-3gn" customClass="MealDetailViewController" customModule="BiAp_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1UN-EE-N4I"/>
                         <viewControllerLayoutGuide type="bottom" id="SN1-QT-1eM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8SE-Ar-iQW">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="600"/>
+                        <rect key="frame" x="0.0" y="44" width="300" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LOb-kB-hLt">
+                                <rect key="frame" x="0.0" y="44" width="300" height="376"/>
+                            </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WkK-oa-Hf2">
+                                <rect key="frame" x="0.0" y="44" width="300" height="724"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="7DO-rw-Oef">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="724"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pUz-pC-h3X" customClass="BEMSimpleLineGraphView">
+                                            <rect key="frame" x="16" y="374" width="268" height="282"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="colorLine">
+                                                    <color key="value" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="colorTop">
+                                                    <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="colorPoint">
+                                                    <color key="value" red="0.074509803920000006" green="0.37254901959999998" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="colorBottom">
+                                                    <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <outlet property="dataSource" destination="sO0-18-3gn" id="w85-n3-rhJ"/>
+                                                <outlet property="delegate" destination="sO0-18-3gn" id="pYs-bb-wcA"/>
+                                            </connections>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(Description)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yuj-U5-sCD">
+                                            <rect key="frame" x="8" y="73" width="284" height="70"/>
+                                            <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-BookIta" family="Bodoni 72" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YyK-h6-IJz">
+                                            <rect key="frame" x="0.0" y="8" width="300" height="68"/>
+                                            <fontDescription key="fontDescription" name="BodoniSvtyTwoITCTT-Book" family="Bodoni 72" pointSize="40"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Carbohydrates" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O65-9U-T9Z">
+                                            <rect key="frame" x="56" y="270" width="102" height="21"/>
+                                            <fontDescription key="fontDescription" name="BodoniSvtyTwoSCITCTT-Book" family="Bodoni 72 Smallcaps" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Protein" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c3n-7K-9RR">
+                                            <rect key="frame" x="81" y="309" width="52" height="21"/>
+                                            <fontDescription key="fontDescription" name="BodoniSvtyTwoSCITCTT-Book" family="Bodoni 72 Smallcaps" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fat" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pIF-IC-cVk">
+                                            <rect key="frame" x="95" y="345" width="24" height="21"/>
+                                            <fontDescription key="fontDescription" name="BodoniSvtyTwoSCITCTT-Book" family="Bodoni 72 Smallcaps" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cna-pC-cJi">
+                                            <rect key="frame" x="174" y="270" width="70" height="21"/>
+                                            <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-BookIt" family="Bodoni 72 Oldstyle" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="okI-w1-8IR">
+                                            <rect key="frame" x="174" y="309" width="70" height="21"/>
+                                            <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-BookIt" family="Bodoni 72 Oldstyle" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cgZ-qg-Ru1">
+                                            <rect key="frame" x="174" y="345" width="70" height="21"/>
+                                            <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-BookIt" family="Bodoni 72 Oldstyle" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="75" minValue="30" maxValue="120" translatesAutoresizingMaskIntoConstraints="NO" id="sYk-T7-j5M">
+                                            <rect key="frame" x="14" y="221" width="272" height="31"/>
+                                            <color key="maximumTrackTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="mealSizeChanged:" destination="sO0-18-3gn" eventType="valueChanged" id="SnN-sT-f33"/>
+                                            </connections>
+                                        </slider>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Meal Size" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3AD-CY-qay">
+                                            <rect key="frame" x="118" y="154" width="65" height="21"/>
+                                            <fontDescription key="fontDescription" name="BodoniSvtyTwoSCITCTT-Book" family="Bodoni 72 Smallcaps" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Medium - 75g" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eyc-cB-A9i">
+                                            <rect key="frame" x="16" y="175" width="268" height="31"/>
+                                            <fontDescription key="fontDescription" name="BodoniSvtyTwoOSITCTT-BookIt" family="Bodoni 72 Oldstyle" pointSize="25"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dfR-vC-zX3">
+                                            <rect key="frame" x="0.0" y="664" width="300" height="60"/>
+                                            <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name="STHeitiTC-Light" family="Heiti TC" pointSize="30"/>
+                                            <state key="normal" title="Feed Yoda">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="feedYodaAction:" destination="sO0-18-3gn" eventType="touchUpInside" id="28O-F1-AVu"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </view>
+                                <blurEffect style="extraLight"/>
+                            </visualEffectView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="choLabel" destination="cna-pC-cJi" id="rUE-ek-Zbc"/>
+                        <outlet property="descLabel" destination="yuj-U5-sCD" id="rvW-hg-T2k"/>
+                        <outlet property="fatLabel" destination="cgZ-qg-Ru1" id="X5E-Cf-VqO"/>
+                        <outlet property="feedYodaButton" destination="dfR-vC-zX3" id="rUF-RB-1yo"/>
+                        <outlet property="glucProfileGraph" destination="pUz-pC-h3X" id="mN1-g7-csq"/>
+                        <outlet property="mealSizeLabel" destination="eyc-cB-A9i" id="FJk-mZ-n9P"/>
+                        <outlet property="mealSizeSlider" destination="sYk-T7-j5M" id="R4y-D8-qPc"/>
+                        <outlet property="mealThumbnail" destination="LOb-kB-hLt" id="Xwy-C2-hVQ"/>
+                        <outlet property="nameLabel" destination="YyK-h6-IJz" id="DzI-ai-wR8"/>
+                        <outlet property="proteinLabel" destination="okI-w1-8IR" id="kZB-rK-gVQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h4N-eI-PpQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="816" y="1208"/>
+            <point key="canvasLocation" x="708" y="1208"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="yoda.png" width="294" height="330"/>
+    </resources>
 </document>

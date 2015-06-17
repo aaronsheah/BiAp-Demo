@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B681BBBA1B29CFF9004AF075 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B681BBB91B29CFF9004AF075 /* AppDelegate.swift */; };
-		B681BBBC1B29CFF9004AF075 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B681BBBB1B29CFF9004AF075 /* ViewController.swift */; };
+		B681BBBC1B29CFF9004AF075 /* CenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B681BBBB1B29CFF9004AF075 /* CenterViewController.swift */; };
 		B681BBBF1B29CFF9004AF075 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B681BBBD1B29CFF9004AF075 /* Main.storyboard */; };
 		B681BBC11B29CFF9004AF075 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B681BBC01B29CFF9004AF075 /* Images.xcassets */; };
 		B681BBC41B29CFF9004AF075 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B681BBC21B29CFF9004AF075 /* LaunchScreen.xib */; };
@@ -40,6 +40,10 @@
 		B681BC341B29F613004AF075 /* BEMPermanentPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = B681BC2E1B29F613004AF075 /* BEMPermanentPopupView.m */; };
 		B681BC351B29F613004AF075 /* BEMSimpleLineGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = B681BC301B29F613004AF075 /* BEMSimpleLineGraphView.m */; };
 		B697F0951B2CFD07002FF84C /* MealDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B697F0941B2CFD07002FF84C /* MealDetailViewController.swift */; };
+		B697F09C1B30A65D002FF84C /* UARTPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = B697F09B1B30A65D002FF84C /* UARTPeripheral.m */; };
+		B697F0A21B30DCD7002FF84C /* hyper_yoda.png in Resources */ = {isa = PBXBuildFile; fileRef = B697F0A11B30DCD7002FF84C /* hyper_yoda.png */; };
+		B697F0A41B30DCDD002FF84C /* hypo_yoda.png in Resources */ = {isa = PBXBuildFile; fileRef = B697F0A31B30DCDD002FF84C /* hypo_yoda.png */; };
+		B697F0A61B30E5FC002FF84C /* fullscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = B697F0A51B30E5FC002FF84C /* fullscreen.png */; };
 		B6F018441B2BB4A0007877BE /* yoda.png in Resources */ = {isa = PBXBuildFile; fileRef = B6F018431B2BB4A0007877BE /* yoda.png */; };
 /* End PBXBuildFile section */
 
@@ -57,7 +61,7 @@
 		B681BBB41B29CFF9004AF075 /* BiAp Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BiAp Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B681BBB81B29CFF9004AF075 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B681BBB91B29CFF9004AF075 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B681BBBB1B29CFF9004AF075 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B681BBBB1B29CFF9004AF075 /* CenterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterViewController.swift; sourceTree = "<group>"; };
 		B681BBBE1B29CFF9004AF075 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B681BBC01B29CFF9004AF075 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B681BBC31B29CFF9004AF075 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -97,6 +101,11 @@
 		B681BC301B29F613004AF075 /* BEMSimpleLineGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMSimpleLineGraphView.m; sourceTree = "<group>"; };
 		B681BC361B29F676004AF075 /* BiAp Demo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BiAp Demo-Bridging-Header.h"; sourceTree = "<group>"; };
 		B697F0941B2CFD07002FF84C /* MealDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealDetailViewController.swift; sourceTree = "<group>"; };
+		B697F09A1B30A65D002FF84C /* UARTPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UARTPeripheral.h; sourceTree = "<group>"; };
+		B697F09B1B30A65D002FF84C /* UARTPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UARTPeripheral.m; sourceTree = "<group>"; };
+		B697F0A11B30DCD7002FF84C /* hyper_yoda.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hyper_yoda.png; sourceTree = "<group>"; };
+		B697F0A31B30DCDD002FF84C /* hypo_yoda.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hypo_yoda.png; sourceTree = "<group>"; };
+		B697F0A51B30E5FC002FF84C /* fullscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fullscreen.png; sourceTree = "<group>"; };
 		B6F018431B2BB4A0007877BE /* yoda.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yoda.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -142,13 +151,13 @@
 				B681BC361B29F676004AF075 /* BiAp Demo-Bridging-Header.h */,
 				B681BC141B29D81C004AF075 /* Meal Files */,
 				B681BBB91B29CFF9004AF075 /* AppDelegate.swift */,
-				B681BBBB1B29CFF9004AF075 /* ViewController.swift */,
 				B681BBEB1B29D372004AF075 /* MealLibraryTableViewController.swift */,
 				B697F0941B2CFD07002FF84C /* MealDetailViewController.swift */,
+				B681BBBB1B29CFF9004AF075 /* CenterViewController.swift */,
 				B681BBBD1B29CFF9004AF075 /* Main.storyboard */,
 				B681BBE81B29D0EF004AF075 /* External Libraries */,
 				B681BBC01B29CFF9004AF075 /* Images.xcassets */,
-				B6F018431B2BB4A0007877BE /* yoda.png */,
+				B697F0A01B30DCC5002FF84C /* Yoda Images */,
 				B681BBC21B29CFF9004AF075 /* LaunchScreen.xib */,
 				B681BBB71B29CFF9004AF075 /* Supporting Files */,
 			);
@@ -183,6 +192,7 @@
 		B681BBE81B29D0EF004AF075 /* External Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				B697F09D1B30A663002FF84C /* UART */,
 				B681BBEA1B29D110004AF075 /* BEMSimpleLineGraph */,
 			);
 			name = "External Libraries";
@@ -238,6 +248,26 @@
 				B681BBED1B29D7AE004AF075 /* Meal Thumbnails */,
 			);
 			name = "Meal Files";
+			sourceTree = "<group>";
+		};
+		B697F09D1B30A663002FF84C /* UART */ = {
+			isa = PBXGroup;
+			children = (
+				B697F09A1B30A65D002FF84C /* UARTPeripheral.h */,
+				B697F09B1B30A65D002FF84C /* UARTPeripheral.m */,
+			);
+			name = UART;
+			sourceTree = "<group>";
+		};
+		B697F0A01B30DCC5002FF84C /* Yoda Images */ = {
+			isa = PBXGroup;
+			children = (
+				B6F018431B2BB4A0007877BE /* yoda.png */,
+				B697F0A31B30DCDD002FF84C /* hypo_yoda.png */,
+				B697F0A11B30DCD7002FF84C /* hyper_yoda.png */,
+				B697F0A51B30E5FC002FF84C /* fullscreen.png */,
+			);
+			name = "Yoda Images";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,15 +354,18 @@
 				B6F018441B2BB4A0007877BE /* yoda.png in Resources */,
 				B681BC051B29D813004AF075 /* fries.jpg in Resources */,
 				B681BC041B29D813004AF075 /* fried-chicken.jpg in Resources */,
+				B697F0A41B30DCDD002FF84C /* hypo_yoda.png in Resources */,
 				B681BC071B29D813004AF075 /* cereal.jpg in Resources */,
 				B681BC061B29D813004AF075 /* big-mac.jpg in Resources */,
 				B681BC131B29D813004AF075 /* breakfast.jpg in Resources */,
 				B681BC101B29D813004AF075 /* french-toast.jpg in Resources */,
 				B681BC091B29D813004AF075 /* pasta.jpg in Resources */,
+				B697F0A61B30E5FC002FF84C /* fullscreen.png in Resources */,
 				B681BBBF1B29CFF9004AF075 /* Main.storyboard in Resources */,
 				B681BC111B29D813004AF075 /* barley.jpg in Resources */,
 				B681BC0A1B29D813004AF075 /* pizza.jpg in Resources */,
 				B681BC121B29D813004AF075 /* eggs-and-toast.jpg in Resources */,
+				B697F0A21B30DCD7002FF84C /* hyper_yoda.png in Resources */,
 				B681BBC41B29CFF9004AF075 /* LaunchScreen.xib in Resources */,
 				B681BC011B29D813004AF075 /* whipped-cream-cereal.jpg in Resources */,
 				B681BC0C1B29D813004AF075 /* bacon-and-eggs.jpg in Resources */,
@@ -361,10 +394,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B681BC311B29F613004AF075 /* BEMAverageLine.m in Sources */,
+				B697F09C1B30A65D002FF84C /* UARTPeripheral.m in Sources */,
 				B681BBEC1B29D372004AF075 /* MealLibraryTableViewController.swift in Sources */,
 				B681BC351B29F613004AF075 /* BEMSimpleLineGraphView.m in Sources */,
 				B681BC321B29F613004AF075 /* BEMCircle.m in Sources */,
-				B681BBBC1B29CFF9004AF075 /* ViewController.swift in Sources */,
+				B681BBBC1B29CFF9004AF075 /* CenterViewController.swift in Sources */,
 				B681BC331B29F613004AF075 /* BEMLine.m in Sources */,
 				B681BC161B29D82D004AF075 /* food.swift in Sources */,
 				B681BBBA1B29CFF9004AF075 /* AppDelegate.swift in Sources */,

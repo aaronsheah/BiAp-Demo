@@ -10,22 +10,61 @@ import UIKit
 
 class MealDetailViewController: UIViewController, BEMSimpleLineGraphDelegate {
 
-//    @IBOutlet weak var glucProfileGraph: BEMSimpleLineGraphView!
+    var meal = bacon_and_eggs
+    var chosenIndex = 0
+    var mealSize = 75
+    
+    // Meal Details
+    @IBOutlet weak var mealThumbnail: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var glucProfileGraph: BEMSimpleLineGraphView!
+    @IBOutlet weak var descLabel: UILabel!
+    @IBOutlet weak var choLabel: UILabel!
+    @IBOutlet weak var proteinLabel: UILabel!
+    @IBOutlet weak var fatLabel: UILabel!
+    
+    // Meal Size
+    @IBOutlet weak var mealSizeSlider: UISlider!
+    @IBOutlet weak var mealSizeLabel: UILabel!
+    @IBAction func mealSizeChanged(sender: UISlider) {
+        var sizeEnglish = "Low"
+        let size = Int(sender.value)
+        mealSize = size
+        
+        if size <= 60 {
+            sizeEnglish = "Small"
+        }
+        else if size <= 90 {
+            sizeEnglish = "Medium"
+        }
+        else if size <= 120 {
+            sizeEnglish = "Large"
+        }
+        mealSizeLabel.text = "\(sizeEnglish) - \(size)g"
+    }
+    
+    // Feeding Yoda
+    @IBOutlet weak var feedYodaButton: UIButton!
+    @IBAction func feedYodaAction(sender: AnyObject) {
+        sendData("\((meal.foods[chosenIndex] as! Food).id)")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let food = meal.foods[chosenIndex] as! Food
         
-//        glucProfileGraph.enableYAxisLabel = false
-//        glucProfileGraph.autoScaleYAxis = true
-//        
-//        glucProfileGraph.enableReferenceAxisFrame = true
-//        
-//        glucProfileGraph.enableXAxisLabel = true
-//        glucProfileGraph.animationGraphEntranceTime = 0.5
-//        glucProfileGraph.enablePopUpReport = true
-//        glucProfileGraph.enableTouchReport = true
+        mealThumbnail.image = meal.thumbnail
+        mealThumbnail.contentMode = UIViewContentMode.ScaleAspectFill
+        mealThumbnail.clipsToBounds = true
+        
+        nameLabel.text = meal.name
+        descLabel.text = food.description
+        choLabel.text = "\(food.cho)%"
+        proteinLabel.text = "\(food.protein)%"
+        fatLabel.text = "\(food.fat)%"
+        
+        setupGraph()
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,28 +72,104 @@ class MealDetailViewController: UIViewController, BEMSimpleLineGraphDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    /*********************
+    *** Graph
+    *********************/
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func setupGraph() {
+        glucProfileGraph.enableYAxisLabel = false
+        glucProfileGraph.autoScaleYAxis = true
+        
+        glucProfileGraph.enableReferenceAxisFrame = false
+        
+        glucProfileGraph.enableXAxisLabel = true
+        glucProfileGraph.animationGraphEntranceTime = 1
     }
-    */
-    
+
     func numberOfPointsInLineGraph(graph: BEMSimpleLineGraphView) -> Int {
-        return 10
-    }
-    
-    func lineGraph(graph: BEMSimpleLineGraphView, labelOnXAxisForIndex index: Int) -> String {
-        return "\(index)"
+        let food:Food = meal.foods[chosenIndex] as! Food
+        return food.glucoseProfile.count
     }
     
     func lineGraph(graph: BEMSimpleLineGraphView, valueForPointAtIndex index: Int) -> CGFloat {
-        return CGFloat(index * 100)
+        let food:Food = meal.foods[chosenIndex] as! Food
+        return CGFloat(food.glucoseProfile.objectAtIndex(index) as! NSNumber)
     }
     
-
+    func lineGraph(graph: BEMSimpleLineGraphView, labelOnXAxisForIndex index: Int) -> String {
+        let food:Food = meal.foods[chosenIndex] as! Food
+        return "\(food.glucoseTime.objectAtIndex(index) as! NSNumber)"
+    }
+    
+    func numberOfGapsBetweenLabelsOnLineGraph(graph: BEMSimpleLineGraphView) -> Int {
+        return 11
+    }
+    
+    /*********************
+    *** Sending Meal
+    *********************/
+    
+    func sendData(data:String) {
+        // Send via WiFi
+        if wifi {
+            let url = NSURL(string: "http://ic-yoda.appspot.com/id?id=\(data)&size=\(mealSize)")
+            let request = NSURLRequest(URL: url!)
+            let connection = NSURLConnection(request: request, delegate:nil, startImmediately: true)
+        }
+        // Send via Bluetooth
+        var sentBT = false
+        if state == .CONNECTED {
+            currentPeripheral.writeString("D,\(data),0,\(mealSize),0\n")
+            addTextToConsole("D,\(data),0,\(mealSize),0\n", dataType: .TX)
+            sentBT = true
+        }
+        
+        var title = ""
+        var message = ""
+        
+        if !wifi && !sentBT {
+            title = "Yoda NOT Fed!"
+            message = ":("
+        }
+        else {
+            title = "Yoda Fed!"
+            message = "Yoda just ate \(meal.name) via "
+            if wifi && !sentBT {
+                message += "WiFi"
+            }
+            else if !wifi && sentBT {
+                message += "Bluetooth"
+            }
+            else {
+                message += "WiFi and Bluetooth"
+            }
+        }
+        
+        let alertView = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alertView.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
+        presentViewController(alertView, animated: true, completion: nil)
+    }
+    
+    func addTextToConsole(string:NSString, dataType:ConsoleDataType) {
+        var direction:NSString
+        
+        switch dataType {
+        case .RX:
+            direction = "RX"
+            break
+        case .TX:
+            direction = "TX"
+            break
+        case .LOGGING:
+            direction = "LOGGING"
+        }
+        
+        var formatter:NSDateFormatter
+        formatter = NSDateFormatter()
+        formatter.dateFormat = "HH:mm:ss.SSS"
+        
+        var output:NSString = "[\(formatter.stringFromDate(NSDate()))] \(direction) \(string)"
+        
+        println(output)
+    }
 }
