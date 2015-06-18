@@ -27,65 +27,32 @@
                                     <segue destination="3lQ-hv-caK" kind="embed" id="jCU-je-w7G"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wvP-mV-dHB" customClass="BEMSimpleLineGraphView">
-                                <rect key="frame" x="304" y="435" width="712" height="325"/>
-                                <gestureRecognizers/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="colorTop">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="colorLine">
-                                        <color key="value" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="colorBottom">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="colorPoint">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="colorYaxisLabel">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="colorXaxisLabel">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="3wT-bd-Bbd"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="zlf-n5-3pG"/>
-                                    <outletCollection property="gestureRecognizers" destination="h4Z-Eh-pEB" appends="YES" id="iYp-aw-EPM"/>
-                                    <outletCollection property="gestureRecognizers" destination="bn8-ip-esS" appends="YES" id="K03-WU-TLI"/>
-                                </connections>
-                            </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="yoda.png" translatesAutoresizingMaskIntoConstraints="NO" id="7tq-vG-Gqf">
-                                <rect key="frame" x="369" y="-3" width="286" height="419"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Glucose" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="daX-TP-teg">
-                                <rect key="frame" x="675" y="159" width="121" height="30"/>
+                                <rect key="frame" x="675" y="129" width="121" height="30"/>
                                 <fontDescription key="fontDescription" name="STHeitiTC-Light" family="Heiti TC" pointSize="30"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.074509803920000006" green="0.37254901959999998" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Insulin" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gcW-cL-9mQ">
-                                <rect key="frame" x="710" y="227" width="86" height="30"/>
+                                <rect key="frame" x="710" y="197" width="86" height="30"/>
                                 <fontDescription key="fontDescription" name="STHeitiTC-Light" family="Heiti TC" pointSize="30"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="1" green="0.50196078431372548" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pBs-wI-ADQ">
-                                <rect key="frame" x="824" y="151" width="135" height="45"/>
+                                <rect key="frame" x="824" y="121" width="135" height="45"/>
                                 <fontDescription key="fontDescription" name="STHeitiTC-Light" family="Heiti TC" pointSize="45"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.074509803920000006" green="0.37254901959999998" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kLg-TK-2Xu">
-                                <rect key="frame" x="824" y="219" width="135" height="45"/>
+                                <rect key="frame" x="824" y="189" width="135" height="45"/>
                                 <fontDescription key="fontDescription" name="STHeitiTC-Light" family="Heiti TC" pointSize="45"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="1" green="0.50196078431372548" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hyperglycaemia" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yya-75-bbj">
-                                <rect key="frame" x="391" y="368" width="242" height="30"/>
+                                <rect key="frame" x="391" y="338" width="242" height="30"/>
                                 <fontDescription key="fontDescription" name="STHeitiTC-Light" family="Heiti TC" pointSize="30"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -99,16 +66,56 @@
                                     <action selector="puppiesTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5UR-dN-nkZ"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5i1-ZC-dzj" customClass="JBBarChartView">
+                                <rect key="frame" x="350" y="389" width="658" height="309"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JEd-B7-HDA" customClass="BEMSimpleLineGraphView">
+                                <rect key="frame" x="318" y="376" width="690" height="342"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="colorBottom">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="colorTop">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="colorLine">
+                                        <color key="value" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="colorPoint">
+                                        <color key="value" red="0.074509803920000006" green="0.37254901959999998" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="colorXaxisLabel">
+                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="colorYaxisLabel">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="H2O-Ns-6l9"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="750-Vc-UPC"/>
+                                    <outletCollection property="gestureRecognizers" destination="Y3s-oZ-l2L" appends="YES" id="Nql-Fc-jnA"/>
+                                    <outletCollection property="gestureRecognizers" destination="aar-gW-4dl" appends="YES" id="GQh-JF-Nz3"/>
+                                </connections>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3 Hours" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zM8-aU-EKP">
+                                <rect key="frame" x="644" y="733" width="70" height="21"/>
+                                <fontDescription key="fontDescription" name="STHeitiTC-Light" family="Heiti TC" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="yoda.png" translatesAutoresizingMaskIntoConstraints="NO" id="7tq-vG-Gqf">
+                                <rect key="frame" x="380" y="8" width="264" height="368"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="wvP-mV-dHB" secondAttribute="trailing" constant="-8" id="1Yk-bp-9D8"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="M4Z-o5-KQ6" secondAttribute="bottom" id="Avq-Yw-v3i"/>
-                            <constraint firstItem="wvP-mV-dHB" firstAttribute="leading" secondItem="M4Z-o5-KQ6" secondAttribute="trailing" constant="8" id="CM5-E5-6w3"/>
                             <constraint firstItem="M4Z-o5-KQ6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="HmY-X2-vTd"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="wvP-mV-dHB" secondAttribute="bottom" constant="8" id="aUX-TP-Teh"/>
-                            <constraint firstItem="wvP-mV-dHB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="435" id="hxH-fI-s7C"/>
                             <constraint firstItem="M4Z-o5-KQ6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="udR-mU-Phy"/>
                         </constraints>
                     </view>
@@ -118,27 +125,29 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad"/>
                     <connections>
                         <outlet property="backButton" destination="5vl-5L-Ln8" id="5NA-Oe-8MV"/>
-                        <outlet property="doubleTapGesture" destination="bn8-ip-esS" id="kEx-5m-mzN"/>
-                        <outlet property="glucGraph" destination="wvP-mV-dHB" id="8eA-gj-64u"/>
+                        <outlet property="doubleTapGesture" destination="Y3s-oZ-l2L" id="dOR-tV-5wm"/>
+                        <outlet property="glucGraph" destination="JEd-B7-HDA" id="fCs-UI-VHg"/>
                         <outlet property="glucLabel" destination="pBs-wI-ADQ" id="xRA-p8-xQF"/>
+                        <outlet property="insuGraph" destination="5i1-ZC-dzj" id="9pu-TU-UgO"/>
                         <outlet property="insuLabel" destination="kLg-TK-2Xu" id="Fax-Ll-bHa"/>
                         <outlet property="mealLibraryContainer" destination="M4Z-o5-KQ6" id="HbF-ME-uSW"/>
-                        <outlet property="panGesture" destination="h4Z-Eh-pEB" id="7h7-TL-Vxi"/>
+                        <outlet property="panGesture" destination="aar-gW-4dl" id="cQF-h1-uTM"/>
+                        <outlet property="periodLabel" destination="zM8-aU-EKP" id="DrK-Hj-biA"/>
                         <outlet property="yodaHealth" destination="Yya-75-bbj" id="P0Q-xi-o9U"/>
                         <outlet property="yodaPicture" destination="7tq-vG-Gqf" id="FJy-oh-2fV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="h4Z-Eh-pEB">
+                <tapGestureRecognizer id="Y3s-oZ-l2L">
                     <connections>
-                        <action selector="panAction:" destination="BYZ-38-t0r" id="qGD-Eo-jug"/>
-                    </connections>
-                </panGestureRecognizer>
-                <tapGestureRecognizer id="bn8-ip-esS">
-                    <connections>
-                        <action selector="doubleTapGesture:" destination="BYZ-38-t0r" id="AEv-c5-C4g"/>
+                        <action selector="doubleTapGesture:" destination="BYZ-38-t0r" id="LBC-5S-FOO"/>
                     </connections>
                 </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="aar-gW-4dl">
+                    <connections>
+                        <action selector="panAction:" destination="BYZ-38-t0r" id="TKF-gS-TrQ"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="346" y="292"/>
         </scene>

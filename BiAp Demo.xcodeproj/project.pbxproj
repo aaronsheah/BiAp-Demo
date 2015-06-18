@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		B646A62D1B31AEC3006262BA /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B646A62C1B31AEC3006262BA /* ContainerViewController.swift */; };
 		B646A6331B31AF01006262BA /* SidePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B646A6321B31AF01006262BA /* SidePanelViewController.swift */; };
+		B646A6441B32255B006262BA /* JBBarChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = B646A63F1B32255B006262BA /* JBBarChartView.m */; };
+		B646A6451B32255B006262BA /* JBChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = B646A6411B32255B006262BA /* JBChartView.m */; };
+		B646A6461B32255B006262BA /* JBLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = B646A6431B32255B006262BA /* JBLineChartView.m */; };
 		B681BBBA1B29CFF9004AF075 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B681BBB91B29CFF9004AF075 /* AppDelegate.swift */; };
 		B681BBBC1B29CFF9004AF075 /* CenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B681BBBB1B29CFF9004AF075 /* CenterViewController.swift */; };
 		B681BBBF1B29CFF9004AF075 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B681BBBD1B29CFF9004AF075 /* Main.storyboard */; };
@@ -62,6 +65,12 @@
 /* Begin PBXFileReference section */
 		B646A62C1B31AEC3006262BA /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		B646A6321B31AF01006262BA /* SidePanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidePanelViewController.swift; sourceTree = "<group>"; };
+		B646A63E1B32255B006262BA /* JBBarChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBBarChartView.h; sourceTree = "<group>"; };
+		B646A63F1B32255B006262BA /* JBBarChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBBarChartView.m; sourceTree = "<group>"; };
+		B646A6401B32255B006262BA /* JBChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBChartView.h; sourceTree = "<group>"; };
+		B646A6411B32255B006262BA /* JBChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBChartView.m; sourceTree = "<group>"; };
+		B646A6421B32255B006262BA /* JBLineChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBLineChartView.h; sourceTree = "<group>"; };
+		B646A6431B32255B006262BA /* JBLineChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBLineChartView.m; sourceTree = "<group>"; };
 		B681BBB41B29CFF9004AF075 /* BiAp Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BiAp Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B681BBB81B29CFF9004AF075 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B681BBB91B29CFF9004AF075 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -131,6 +140,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B646A6471B322564006262BA /* JBChart */ = {
+			isa = PBXGroup;
+			children = (
+				B646A63E1B32255B006262BA /* JBBarChartView.h */,
+				B646A63F1B32255B006262BA /* JBBarChartView.m */,
+				B646A6401B32255B006262BA /* JBChartView.h */,
+				B646A6411B32255B006262BA /* JBChartView.m */,
+				B646A6421B32255B006262BA /* JBLineChartView.h */,
+				B646A6431B32255B006262BA /* JBLineChartView.m */,
+			);
+			name = JBChart;
+			sourceTree = "<group>";
+		};
 		B681BBAB1B29CFF9004AF075 = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +220,7 @@
 		B681BBE81B29D0EF004AF075 /* External Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				B646A6471B322564006262BA /* JBChart */,
 				B697F09D1B30A663002FF84C /* UART */,
 				B681BBEA1B29D110004AF075 /* BEMSimpleLineGraph */,
 			);
@@ -406,11 +429,14 @@
 				B681BC321B29F613004AF075 /* BEMCircle.m in Sources */,
 				B681BBBC1B29CFF9004AF075 /* CenterViewController.swift in Sources */,
 				B681BC331B29F613004AF075 /* BEMLine.m in Sources */,
+				B646A6441B32255B006262BA /* JBBarChartView.m in Sources */,
 				B681BC161B29D82D004AF075 /* food.swift in Sources */,
 				B646A6331B31AF01006262BA /* SidePanelViewController.swift in Sources */,
 				B681BBBA1B29CFF9004AF075 /* AppDelegate.swift in Sources */,
 				B697F0951B2CFD07002FF84C /* MealDetailViewController.swift in Sources */,
 				B646A62D1B31AEC3006262BA /* ContainerViewController.swift in Sources */,
+				B646A6461B32255B006262BA /* JBLineChartView.m in Sources */,
+				B646A6451B32255B006262BA /* JBChartView.m in Sources */,
 				B681BC341B29F613004AF075 /* BEMPermanentPopupView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
