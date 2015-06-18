@@ -12,4 +12,8 @@
 #import "BEMSimpleLineGraphView.h"
 #import "UARTPeripheral.h"
 
+#import "JBChartView.h"
+#import "JBBarChartView.h"
+#import "JBLineChartView.h"
+
 #endif

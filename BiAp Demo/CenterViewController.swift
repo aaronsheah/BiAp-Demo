@@ -56,7 +56,7 @@ protocol CenterViewControllerDelegate {
 *** ViewController
 *********************/
 
-class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, CBCentralManagerDelegate, UARTPeripheralDelegate {
+class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, JBBarChartViewDataSource, JBBarChartViewDelegate, CBCentralManagerDelegate, UARTPeripheralDelegate {
     // slide out
     var delegate: CenterViewControllerDelegate?
     @IBAction func puppiesTapped(sender: AnyObject) {
@@ -69,10 +69,11 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, CBCent
     @IBOutlet weak var yodaHealth: UILabel!
     
     @IBOutlet weak var glucGraph: BEMSimpleLineGraphView!
+    @IBOutlet weak var insuGraph: JBBarChartView!
     @IBOutlet weak var mealLibraryContainer: UIView!
     @IBOutlet weak var glucLabel: UILabel!
     @IBOutlet weak var insuLabel: UILabel!
-    
+    @IBOutlet weak var periodLabel: UILabel!
     
     // Timers
     var timer = NSTimer()
@@ -88,27 +89,37 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, CBCent
     @IBOutlet var panGesture: UIPanGestureRecognizer!
     @IBAction func panAction(sender: AnyObject) {
         let pg = sender as! UIPanGestureRecognizer
+        
+        // graphview
         let coordinates = sender.translationInView(glucGraph)
         
         let x:CGFloat = coordinates.x
         
         if pg.state == UIGestureRecognizerState.Began {
-            start_x = x
-            
-            let testFrame : CGRect = CGRectMake(500,350,320,62)
-            var testView : UIView = UIView(frame: testFrame)
-            testView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-            testView.tag = 1
-            testView.alpha = 1
-            
-            message = UILabel(frame: CGRectMake(0, 0, 320, 62))
-            message.center = CGPointMake(160,31)
-            message.textAlignment = NSTextAlignment.Center
-            message.text = ""
-            message.textColor = UIColor.whiteColor()
-            testView.addSubview(message)
-            
-            self.view.addSubview(testView)
+//            if self.view.viewWithTag(1) != nil {
+//                start_x = x
+//                
+//                let testFrame : CGRect = CGRectMake(500,350,320,62)
+//                var testView : UIView = UIView(frame: testFrame)
+//                testView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+//                testView.tag = 2
+//                testView.alpha = 1
+//                
+//                message = UILabel(frame: CGRectMake(0, 0, 320, 62))
+//                message.center = CGPointMake(160,31)
+//                message.textAlignment = NSTextAlignment.Center
+//                message.text = ""
+//                message.textColor = UIColor.whiteColor()
+//                testView.addSubview(message)
+//                
+//                self.view.addSubview(testView)
+//                
+//                println(testView)
+//                println("STARTED")
+//            }
+//            else {
+//                self.view.viewWithTag(1)!.hidden = false
+//            }
         }
         
         let diff = (x - start_x)/320.00
@@ -116,24 +127,30 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, CBCent
         // 0 to 320
         if diff < 0.25 {
             n_values = 0
-            message.text = "3 Hours"
+//            message.text = "3 Hours"
+            periodLabel.text = "3 Hours"
         }
         else if diff < 0.5 {
             n_values = 1
-            message.text = "6 Hours"
+//            message.text = "6 Hours"
+            periodLabel.text = "6 Hours"
         }
         else if diff < 0.75 {
             n_values = 2
-            message.text = "12 Hours"
+//            message.text = "12 Hours"
+            periodLabel.text = "12 Hours"
         }
         else if diff < 1 {
             n_values = 3
-            message.text = "24 Hours"
+//            message.text = "24 Hours"
+            periodLabel.text = "24 Hours"
         }
         
         if pg.state == UIGestureRecognizerState.Ended {
-            var viewToRemove = self.view.viewWithTag(1)
-            viewToRemove?.removeFromSuperview()
+//            var viewToRemove = self.view.viewWithTag(1)
+//            viewToRemove!.hidden = true
+//            println("ENDED")
+//            println(viewToRemove)
         }
         
         refreshGraph()
@@ -209,8 +226,8 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, CBCent
     *********************/
     
     func setupGraph() {
-
-        glucGraph.enableBezierCurve = true
+        insuGraph.dataSource = self
+        insuGraph.delegate = self
         
         // Reference Frame (Axis lines)
         glucGraph.enableReferenceAxisFrame = true
@@ -326,6 +343,53 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, CBCent
             return 0
         }
     }
+    
+    func minValueForLineGraph(graph: BEMSimpleLineGraphView) -> CGFloat {
+        return 0
+    }
+    
+    func numberOfBarsInBarChartView(barChartView: JBBarChartView!) -> UInt {
+        if n_values == 0 {
+            return 3 * 60/5
+        }
+        else if n_values == 1 {
+            // 6 hrs
+            return 6 * 60 / 5
+        }
+        else if n_values == 2 {
+            // 12 hrs
+            return 12 * 60 / 5
+        }
+        else if n_values == 3 {
+            // 24 hrs
+            return 24 * 60 / 5
+        }
+        return UInt(insulinLevels.count)
+    }
+    
+    func barChartView(barChartView: JBBarChartView!, heightForBarViewAtIndex index: UInt) -> CGFloat {
+        if n_values == 0 {
+            // 3 hrs
+            return insulinLevels[Int(index + 251)] as! CGFloat
+        }
+        else if n_values == 1 {
+            // 6 hrs
+            return insulinLevels[Int(index + 215)] as! CGFloat
+        }
+        else if n_values == 2 {
+            // 12 hrs
+            return insulinLevels[Int(index + 143)] as! CGFloat
+        }
+        else if n_values == 3 {
+            // 24 hrs
+            return insulinLevels[Int(index)] as! CGFloat
+        }
+        return 0
+    }
+    func barChartView(barChartView: JBBarChartView!, colorForBarViewAtIndex index: UInt) -> UIColor! {
+        return UIColor(red: 1, green: 128/255, blue: 0, alpha: 1)
+    }
+    
     /*******************************
     *** Glucose and Insuline Levels
     ********************************/
@@ -469,7 +533,10 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, CBCent
     }
     
     func refreshGraph() {
+        insuGraph.maximumValue = CGFloat(glucGraph.calculateMaximumPointValue())
+        
         glucGraph.reloadGraph()
+        insuGraph.reloadData()
         
         refreshLabels()
     }
