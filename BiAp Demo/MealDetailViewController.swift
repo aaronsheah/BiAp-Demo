@@ -118,10 +118,12 @@ class MealDetailViewController: UIViewController, BEMSimpleLineGraphDelegate {
         }
         // Send via Bluetooth
         var sentBT = false
-        if state == .CONNECTED {
-            currentPeripheral.writeString("D,\(data),0,\(mealSize),0\n")
-            addTextToConsole("D,\(data),0,\(mealSize),0\n", dataType: .TX)
-            sentBT = true
+        if bt {
+            if state == .CONNECTED {
+                currentPeripheral.writeString("D,\(data),0,\(mealSize),0\n")
+                addTextToConsole("D,\(data),0,\(mealSize),0\n", dataType: .TX)
+                sentBT = true
+            }
         }
         
         var title = ""

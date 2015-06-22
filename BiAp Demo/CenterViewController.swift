@@ -82,6 +82,7 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, JBBarC
     
     // Last N Values
     var n_values = 0
+    var temp_n_values = 0
     
     // Pan Gesture to change N Values/Time Range
     var start_x:CGFloat = 0
@@ -95,65 +96,82 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, JBBarC
         
         let x:CGFloat = coordinates.x
         
+        // Find initial N Value
         if pg.state == UIGestureRecognizerState.Began {
-//            if self.view.viewWithTag(1) != nil {
-//                start_x = x
-//                
-//                let testFrame : CGRect = CGRectMake(500,350,320,62)
-//                var testView : UIView = UIView(frame: testFrame)
-//                testView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-//                testView.tag = 2
-//                testView.alpha = 1
-//                
-//                message = UILabel(frame: CGRectMake(0, 0, 320, 62))
-//                message.center = CGPointMake(160,31)
-//                message.textAlignment = NSTextAlignment.Center
-//                message.text = ""
-//                message.textColor = UIColor.whiteColor()
-//                testView.addSubview(message)
-//                
-//                self.view.addSubview(testView)
-//                
-//                println(testView)
-//                println("STARTED")
-//            }
-//            else {
-//                self.view.viewWithTag(1)!.hidden = false
-//            }
+            temp_n_values = n_values
+            println("1n \(n_values)")
         }
         
+        /**********************************/
+        // Preview Changed N Value
         let diff = (x - start_x)/320.00
+        var increment = 0
         
-        // 0 to 320
-        if diff < 0.25 {
-            n_values = 0
-//            message.text = "3 Hours"
-            periodLabel.text = "3 Hours"
+        
+        if diff < 0 {
+            
+            if diff > -0.5  {
+                increment = -1
+            }
+            else if diff > -1 {
+                increment = -2
+            }
+            else if diff > -1.5{
+                increment = -3
+            }
         }
-        else if diff < 0.5 {
-            n_values = 1
-//            message.text = "6 Hours"
-            periodLabel.text = "6 Hours"
+        else if diff > 0 {
+            if diff < 0.5 {
+                increment = 1
+            }
+            else if diff < 1 {
+                increment = 2
+            }
+            else if diff < 1.5 {
+                increment = 3
+            }
         }
-        else if diff < 0.75 {
-            n_values = 2
-//            message.text = "12 Hours"
-            periodLabel.text = "12 Hours"
-        }
-        else if diff < 1 {
+        
+        
+        n_values = temp_n_values + increment
+        if n_values > 3 {
             n_values = 3
-//            message.text = "24 Hours"
-            periodLabel.text = "24 Hours"
         }
+        else if n_values < 0 {
+            n_values = 0
+        }
+        /**********************************/
         
+        // Set Final N Value
         if pg.state == UIGestureRecognizerState.Ended {
-//            var viewToRemove = self.view.viewWithTag(1)
-//            viewToRemove!.hidden = true
-//            println("ENDED")
-//            println(viewToRemove)
+            temp_n_values += increment
+            if temp_n_values > 3 {
+                n_values = 3
+            }
+            else if temp_n_values < 0 {
+                n_values = 0
+            }
+            else {
+                n_values = temp_n_values
+            }
         }
         
-        refreshGraph()
+        switch n_values {
+        case 0:
+            periodLabel.text = "3 Hours"
+        case 1:
+            periodLabel.text = "6 Hours"
+        case 2:
+            periodLabel.text = "12 Hours"
+        case 3:
+            periodLabel.text = "24 Hours"
+        default:
+            periodLabel.text = ""
+        }
+        
+        if !graphRefreshTimer.valid {
+            refreshGraph()
+        }
         
     }
     
@@ -530,12 +548,37 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, JBBarC
             
             task.resume()
         }
+        
+        else if bt {
+            println("JSON from BT")
+            var inbox = NSArray(array: inboxGI)
+            inboxGI.removeAllObjects()
+            btDrawGraph(inbox)
+            return
+
+        }
+    }
+    func btDrawGraph(items:NSArray) {
+        for item in items {
+            var date = item["date"] as! String
+            if  date > startDateTime && date > lastValueDate {
+                let gluc = (item["gluc"] as! NSString).floatValue
+                glucoseLevels.removeObjectAtIndex(0)
+                glucoseLevels.addObject(gluc)
+                
+                let insu = (item["insu"] as! NSString).floatValue
+                insulinLevels.removeObjectAtIndex(0)
+                insulinLevels.addObject(insu)
+                
+                lastValueDate = date
+            }
+        }
     }
     
     func refreshGraph() {
-        insuGraph.maximumValue = CGFloat(glucGraph.calculateMaximumPointValue())
-        
         glucGraph.reloadGraph()
+        
+        insuGraph.maximumValue = CGFloat(glucGraph.calculateMaximumPointValue())
         insuGraph.reloadData()
         
         refreshLabels()
@@ -545,17 +588,18 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, JBBarC
         let insu = insulinLevels.lastObject as! Float
         
         glucLabel.text = "\(gluc)"
+        glucLabel.text = NSString(format: "%.2f", gluc) as String
         insuLabel.text = "\(insu)"
         
         //hypo
-        if gluc <= 3 {
+        if gluc <= 3.9 {
             yodaPicture.image = UIImage(named: "hypo_yoda.png")
-            yodaHealth.text = "Hypoglycaemia"
+            yodaHealth.text = "Hypoglycemia"
         }
         //hyper
-        else if gluc >= 12 {
+        else if gluc >= 10 {
             yodaPicture.image = UIImage(named: "hyper_yoda.png")
-            yodaHealth.text = "Hyperglycaemia"
+            yodaHealth.text = "Hyperglycemia"
         }
         //healthy
         else {
@@ -651,6 +695,18 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, JBBarC
         if input.count == 2 {
             var glucose = input[0] as! NSString
             var insulin = input[1] as! NSString
+            
+            //////////////////////////////////////////////////////////////////
+            var upperlimitgluc = 1.5 * (glucoseLevels.lastObject as! Float)
+            var lowerlimitgluc = 0.0 as Float
+            
+            if (glucose.floatValue) > upperlimitgluc {
+                return
+            }
+            else if (glucose.floatValue) < lowerlimitgluc {
+                return
+            }
+            //////////////////////////////////////////////////////////////////
             
             var components = NSString(string: "\(NSDate())").componentsSeparatedByString(" ")
             var datetime = "\(components[0])&\(components[1])"
