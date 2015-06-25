@@ -177,11 +177,7 @@
 				B681BC361B29F676004AF075 /* BiAp Demo-Bridging-Header.h */,
 				B681BC141B29D81C004AF075 /* Meal Files */,
 				B681BBB91B29CFF9004AF075 /* AppDelegate.swift */,
-				B681BBEB1B29D372004AF075 /* MealLibraryTableViewController.swift */,
-				B697F0941B2CFD07002FF84C /* MealDetailViewController.swift */,
-				B681BBBB1B29CFF9004AF075 /* CenterViewController.swift */,
-				B646A62C1B31AEC3006262BA /* ContainerViewController.swift */,
-				B646A6321B31AF01006262BA /* SidePanelViewController.swift */,
+				B6C054EB1B3C31FA00E84027 /* Views */,
 				B681BBBD1B29CFF9004AF075 /* Main.storyboard */,
 				B681BBE81B29D0EF004AF075 /* External Libraries */,
 				B681BBC01B29CFF9004AF075 /* Images.xcassets */,
@@ -297,6 +293,18 @@
 				B697F0A51B30E5FC002FF84C /* fullscreen.png */,
 			);
 			name = "Yoda Images";
+			sourceTree = "<group>";
+		};
+		B6C054EB1B3C31FA00E84027 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B681BBEB1B29D372004AF075 /* MealLibraryTableViewController.swift */,
+				B697F0941B2CFD07002FF84C /* MealDetailViewController.swift */,
+				B681BBBB1B29CFF9004AF075 /* CenterViewController.swift */,
+				B646A62C1B31AEC3006262BA /* ContainerViewController.swift */,
+				B646A6321B31AF01006262BA /* SidePanelViewController.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

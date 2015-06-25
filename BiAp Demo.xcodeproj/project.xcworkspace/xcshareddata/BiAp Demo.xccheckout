@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>6F6B266B-E580-496D-8029-D65FA0DAC1CC</string>
+	<key>IDESourceControlProjectName</key>
+	<string>BiAp Demo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>F98465AA7E7F3F4F2B3E67F3345136BA004F8224</key>
+		<string>https://github.com/aaronsheah/BiAp-Demo.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>BiAp Demo.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>F98465AA7E7F3F4F2B3E67F3345136BA004F8224</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/aaronsheah/BiAp-Demo.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>F98465AA7E7F3F4F2B3E67F3345136BA004F8224</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F98465AA7E7F3F4F2B3E67F3345136BA004F8224</string>
+			<key>IDESourceControlWCCName</key>
+			<string>BiAp%20Demo</string>
+		</dict>
+	</array>
+</dict>
+</plist>
