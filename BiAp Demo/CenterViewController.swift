@@ -196,7 +196,7 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, JBBarC
     
     // Bluetooth
     var centralManager:CBCentralManager!
-    
+    var inputBuffer:String = ""
 
     /******************************
     *** View Controller Functions
@@ -244,6 +244,22 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, JBBarC
     *********************/
     
     func setupGraph() {
+        
+        var minGluc = BEMAverageLine()
+        minGluc.yValue = 3
+        minGluc.enableAverageLine = true
+        minGluc.color = UIColor(red: 46/255, green: 204/255, blue: 113/255, alpha: 0.2)
+        minGluc.dashPattern = [5]
+        
+        var maxGluc = BEMAverageLine()
+        maxGluc.yValue = 10
+        maxGluc.enableAverageLine = true
+        maxGluc.color = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 0.2)
+        maxGluc.dashPattern = [5]
+        
+        glucGraph.minRefLine = minGluc
+        glucGraph.maxRefLine = maxGluc
+        
         insuGraph.dataSource = self
         insuGraph.delegate = self
         
@@ -576,10 +592,14 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, JBBarC
     }
     
     func refreshGraph() {
-        glucGraph.reloadGraph()
         
-        insuGraph.maximumValue = CGFloat(glucGraph.calculateMaximumPointValue())
+        let glucMax = CGFloat(glucGraph.calculateMaximumPointValue())
+        
+        insuGraph.maximumValue = glucMax
         insuGraph.reloadData()
+
+        glucGraph.maxRefLine.enableAverageLine = (glucMax >= 9)
+        glucGraph.reloadGraph()
         
         refreshLabels()
     }
@@ -665,8 +685,21 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, JBBarC
     }
     
     func didReceiveData(string: String!) {
-        addTextToConsole(string, dataType: .RX)
+        for c in string {
+            if (c != "\n" || c != "\r") {
+                inputBuffer += "\(c)"
+            }
+            else {
+                parseData(inputBuffer)
+                inputBuffer = ""
+                
+                addTextToConsole(inputBuffer, dataType: .RX)
+            }
+        }
         
+    }
+    
+    func parseData(string:String) {
         // split string into array
         var input = NSString(string: string).componentsSeparatedByString(",")
         
@@ -687,12 +720,10 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, JBBarC
                 println("Unknown command '\(connection)'")
                 
             }
-            
-            return
         }
         
         // Glucose and Insulin values
-        if input.count == 2 {
+        else if input.count == 2 {
             var glucose = input[0] as! NSString
             var insulin = input[1] as! NSString
             
@@ -701,10 +732,10 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, JBBarC
             var lowerlimitgluc = 0.0 as Float
             
             if (glucose.floatValue) > upperlimitgluc {
-                return
+                glucose = "\(glucoseLevels.lastObject as! Float)"
             }
             else if (glucose.floatValue) < lowerlimitgluc {
-                return
+                glucose = "\(glucoseLevels.lastObject as! Float)"
             }
             //////////////////////////////////////////////////////////////////
             
@@ -718,8 +749,6 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, JBBarC
             ]
             
             inboxGI.addObject(output)
-            
-            return
         }
     }
     

@@ -45,7 +45,7 @@ class ContainerViewController: UIViewController {
     centerViewController.didMoveToParentViewController(self)
     
     let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "handlePanGesture:")
-    panGestureRecognizer.minimumNumberOfTouches = 5
+    panGestureRecognizer.minimumNumberOfTouches = 4
     centerViewController.view.addGestureRecognizer(panGestureRecognizer)
   }
   
