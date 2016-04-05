@@ -52,6 +52,8 @@ protocol CenterViewControllerDelegate {
     optional func collapseSidePanels()
 }
 
+var feedOnly = false
+
 /*********************
 *** ViewController
 *********************/
@@ -62,12 +64,52 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, JBBarC
     @IBAction func puppiesTapped(sender: AnyObject) {
         print("toggleRightPanel")
         delegate?.toggleRightPanel?()
+        
+        if feedOnly {
+            print("feedOnly YES")
+            
+            glucGraph.hidden = true
+            insuGraph.hidden = true
+            glucLabel.hidden = true
+            insuLabel.hidden = true
+            glucNameLabel.hidden = true
+            insuNameLabel.hidden = true
+            periodLabel.hidden = true
+            
+            yodaPicture.hidden = true
+            yodaHealth.hidden = true
+            
+            bigYoda.hidden = false
+            imperialLogo.hidden = false
+        }
+        else {
+            print("feedOnly NO")
+            
+            glucGraph.hidden = false
+            insuGraph.hidden = false
+            glucLabel.hidden = false
+            insuLabel.hidden = false
+            glucNameLabel.hidden = false
+            insuNameLabel.hidden = false
+            periodLabel.hidden = false
+            
+            yodaPicture.hidden = false
+            yodaHealth.hidden = false
+            
+            bigYoda.hidden = true
+            imperialLogo.hidden = true
+        }
     }
     @IBOutlet weak var backButton: UIButton!
+    
+    @IBOutlet weak var bigYoda: UIImageView!
+    @IBOutlet weak var imperialLogo: UIImageView!
     
     @IBOutlet weak var yodaPicture: UIImageView!
     @IBOutlet weak var yodaHealth: UILabel!
     
+    @IBOutlet weak var glucNameLabel: UILabel!
+    @IBOutlet weak var insuNameLabel: UILabel!
     @IBOutlet weak var glucGraph: BEMSimpleLineGraphView!
     @IBOutlet weak var insuGraph: JBBarChartView!
     @IBOutlet weak var mealLibraryContainer: UIView!
@@ -224,6 +266,8 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, JBBarC
         // settings 4 finger swipe
         backButton.alpha = 0
         
+        bigYoda.hidden = true
+        imperialLogo.hidden = true
     }
     
     override func didReceiveMemoryWarning() {

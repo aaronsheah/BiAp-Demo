@@ -12,6 +12,7 @@
 		B646A6441B32255B006262BA /* JBBarChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = B646A63F1B32255B006262BA /* JBBarChartView.m */; };
 		B646A6451B32255B006262BA /* JBChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = B646A6411B32255B006262BA /* JBChartView.m */; };
 		B646A6461B32255B006262BA /* JBLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = B646A6431B32255B006262BA /* JBLineChartView.m */; };
+		B661BAF01CB3E8BD00584430 /* Imperial.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B661BAEF1CB3E8BD00584430 /* Imperial.jpg */; };
 		B681BBBA1B29CFF9004AF075 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B681BBB91B29CFF9004AF075 /* AppDelegate.swift */; };
 		B681BBBC1B29CFF9004AF075 /* CenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B681BBBB1B29CFF9004AF075 /* CenterViewController.swift */; };
 		B681BBBF1B29CFF9004AF075 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B681BBBD1B29CFF9004AF075 /* Main.storyboard */; };
@@ -71,6 +72,7 @@
 		B646A6411B32255B006262BA /* JBChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBChartView.m; sourceTree = "<group>"; };
 		B646A6421B32255B006262BA /* JBLineChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBLineChartView.h; sourceTree = "<group>"; };
 		B646A6431B32255B006262BA /* JBLineChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JBLineChartView.m; sourceTree = "<group>"; };
+		B661BAEF1CB3E8BD00584430 /* Imperial.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Imperial.jpg; sourceTree = "<group>"; };
 		B681BBB41B29CFF9004AF075 /* BiAp Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BiAp Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B681BBB81B29CFF9004AF075 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B681BBB91B29CFF9004AF075 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 				B697F0A31B30DCDD002FF84C /* hypo_yoda.png */,
 				B697F0A11B30DCD7002FF84C /* hyper_yoda.png */,
 				B697F0A51B30E5FC002FF84C /* fullscreen.png */,
+				B661BAEF1CB3E8BD00584430 /* Imperial.jpg */,
 			);
 			name = "Yoda Images";
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				B697F0A41B30DCDD002FF84C /* hypo_yoda.png in Resources */,
 				B681BC071B29D813004AF075 /* cereal.jpg in Resources */,
 				B681BC061B29D813004AF075 /* big-mac.jpg in Resources */,
+				B661BAF01CB3E8BD00584430 /* Imperial.jpg in Resources */,
 				B681BC131B29D813004AF075 /* breakfast.jpg in Resources */,
 				B681BC101B29D813004AF075 /* french-toast.jpg in Resources */,
 				B681BC091B29D813004AF075 /* pasta.jpg in Resources */,

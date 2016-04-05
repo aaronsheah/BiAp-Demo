@@ -114,7 +114,7 @@ class MealDetailViewController: UIViewController, BEMSimpleLineGraphDelegate {
         if wifi {
             let url = NSURL(string: "http://ic-yoda.appspot.com/id?id=\(data)&size=\(mealSize)")
             let request = NSURLRequest(URL: url!)
-            let connection = NSURLConnection(request: request, delegate:nil, startImmediately: true)
+            _ = NSURLConnection(request: request, delegate:nil, startImmediately: true)
         }
         // Send via Bluetooth
         var sentBT = false

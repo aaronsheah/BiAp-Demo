@@ -66,9 +66,10 @@ class SidePanelViewController: UITableViewController {
         wifiSwitch.setOn(wifi, animated: false)
         btSwitch.setOn(bt, animated: false)
         simSwitch.setOn(sim, animated: false)
+        feedDisplayOnlySwitch.setOn(feedOnly, animated: false)
         
         if !btTimer.valid {
-            btTimer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("refreshRSSILabel"), userInfo: nil, repeats: true)
+            btTimer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: #selector(SidePanelViewController.refreshRSSILabel), userInfo: nil, repeats: true)
 
         }
     }
@@ -77,6 +78,10 @@ class SidePanelViewController: UITableViewController {
         btTimer.invalidate()
     }
     
+    @IBOutlet weak var feedDisplayOnlySwitch: UISwitch!
+    @IBAction func feedDisplayOnly(sender: AnyObject) {
+        feedOnly = feedDisplayOnlySwitch.on
+    }
     @IBAction func resetGraph(sender: AnyObject) {
         
         // Amount of 5 minute intervals in a day
@@ -94,13 +99,13 @@ class SidePanelViewController: UITableViewController {
         }
         
         if glucoseLevels.count == 0 {
-            for x in 0...capacity-1 {
+            for _ in 0...capacity-1 {
                 glucoseLevels.addObject(0 as Float)
             }
         }
         
         if insulinLevels.count == 0 {
-            for x in 0...capacity-1 {
+            for _ in 0...capacity-1 {
                 insulinLevels.addObject(0 as Float)
             }
         }

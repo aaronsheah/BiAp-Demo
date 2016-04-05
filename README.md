@@ -74,7 +74,9 @@ This is the view that holds the main screen. 3 main things that in this view are
 ###### iii. Bluetooth 
 
 ##### 3. Side Panel
-This view holds the hidden settings panel which can be access through a pan gesture.
+This view holds the hidden settings panel which can be access through 4 finger pan gesture.
+
+![alt text](https://raw.githubusercontent.com/aaronsheah/BiAp-Demo/master/misc/sidepanel.png "Screenshot of Sidepanel")
 
 It is a static table view, therefore adding more settings/tips can be done in the Storyboard.
 
