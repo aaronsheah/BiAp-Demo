@@ -72,7 +72,7 @@ extension ContainerViewController: CenterViewControllerDelegate {
       addRightPanelViewController()
     }
     
-    animateRightPanel(shouldExpand: notAlreadyExpanded)
+    animateRightPanel(notAlreadyExpanded)
   }
   
   func collapseSidePanels() {
@@ -112,7 +112,7 @@ extension ContainerViewController: CenterViewControllerDelegate {
     }
   }
   
-  func animateLeftPanel(#shouldExpand: Bool) {
+  func animateLeftPanel(shouldExpand: Bool) {
 //    if (shouldExpand) {
 //      currentState = .LeftPanelExpanded
 //      
@@ -127,21 +127,21 @@ extension ContainerViewController: CenterViewControllerDelegate {
 //    }
   }
   
-  func animateCenterPanelXPosition(#targetPosition: CGFloat, completion: ((Bool) -> Void)! = nil) {
+  func animateCenterPanelXPosition(targetPosition: CGFloat, completion: ((Bool) -> Void)! = nil) {
     UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .CurveEaseInOut, animations: {
       self.centerViewController.view.frame.origin.x = targetPosition
       }, completion: completion)
   }
   
-  func animateRightPanel(#shouldExpand: Bool) {
+  func animateRightPanel(shouldExpand: Bool) {
     if (shouldExpand) {
       currentState = .RightPanelExpanded
       
-        animateCenterPanelXPosition(targetPosition: -CGRectGetWidth(centerViewController.view.frame) + centerPanelExpandedOffset)
+        animateCenterPanelXPosition(-CGRectGetWidth(centerViewController.view.frame) + centerPanelExpandedOffset)
         
         centerViewController.backButton.alpha = 1
     } else {
-      animateCenterPanelXPosition(targetPosition: 0) { _ in
+      animateCenterPanelXPosition(0) { _ in
         self.currentState = .BothCollapsed
         
         self.rightViewController!.view.removeFromSuperview()
@@ -189,7 +189,7 @@ extension ContainerViewController: UIGestureRecognizerDelegate {
     //        animateLeftPanel(shouldExpand: hasMovedGreaterThanHalfway)
           } else if (rightViewController != nil) {
             let hasMovedGreaterThanHalfway = recognizer.view!.center.x < 0
-            animateRightPanel(shouldExpand: hasMovedGreaterThanHalfway)
+            animateRightPanel(hasMovedGreaterThanHalfway)
           }
         default:
           break

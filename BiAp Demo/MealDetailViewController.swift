@@ -170,8 +170,8 @@ class MealDetailViewController: UIViewController, BEMSimpleLineGraphDelegate {
         formatter = NSDateFormatter()
         formatter.dateFormat = "HH:mm:ss.SSS"
         
-        var output:NSString = "[\(formatter.stringFromDate(NSDate()))] \(direction) \(string)"
+        let output:NSString = "[\(formatter.stringFromDate(NSDate()))] \(direction) \(string)"
         
-        println(output)
+        print(output)
     }
 }

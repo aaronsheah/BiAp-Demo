@@ -46,13 +46,13 @@ class SidePanelViewController: UITableViewController {
     func refreshRSSILabel() {
         if currentPeripheral != nil {
             currentPeripheral.peripheral.readRSSI()
-            var rssi = currentPeripheral.peripheral.RSSI as? Int
+            let rssi = currentPeripheral.peripheral.RSSI as? Int
             
             if rssi != nil {
                 rssiLabel.text = "\(rssi!) dB"
                 
-                var base = -40
-                var distance = (base - rssi!)/6 + 1
+                let base = -40
+                let distance = (base - rssi!)/6 + 1
                 
                 distanceLabel.text = "~\(distance)m"
             }
@@ -80,7 +80,7 @@ class SidePanelViewController: UITableViewController {
     @IBAction func resetGraph(sender: AnyObject) {
         
         // Amount of 5 minute intervals in a day
-        var capacity = 24 * 60 / 5
+        let capacity = 24 * 60 / 5
 
         time.removeAllObjects()
         glucoseLevels.removeAllObjects()

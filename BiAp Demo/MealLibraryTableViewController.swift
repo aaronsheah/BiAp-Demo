@@ -39,7 +39,7 @@ class MealLibraryTableViewController: UITableViewController {
         cell.nameLabel!.text = "\(meal.name)"
 
         // Set Thumbnail as Background Image
-        var imageView = UIImageView(frame: CGRectMake(0, 0, cell.frame.width, cell.frame.height))
+        let imageView = UIImageView(frame: CGRectMake(0, 0, cell.frame.width, cell.frame.height))
         imageView.image = meal.thumbnail
         imageView.contentMode = UIViewContentMode.ScaleAspectFill
         imageView.clipsToBounds = true
@@ -56,10 +56,10 @@ class MealLibraryTableViewController: UITableViewController {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
         if segue.identifier == "showDetail" {
-            let indexPath = self.tableView.indexPathForSelectedRow()
+            let indexPath = self.tableView.indexPathForSelectedRow
             let meal = mealLibrary[indexPath!.row] as Meal //set to the selected meal
             
-            var vc = segue.destinationViewController as? MealDetailViewController
+            let vc = segue.destinationViewController as? MealDetailViewController
             if vc != nil {
                 vc!.meal = meal
             }

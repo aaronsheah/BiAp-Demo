@@ -23,10 +23,10 @@ var startDateTime:String = ""
 var lastValueDate = ""
 
 // Simulate Values
-var sim = true
+var sim = false
 
 // Connections
-var wifi = false
+var wifi = true
 var bt = false
 var state:ConnectionState = .IDLE
 var currentPeripheral:UARTPeripheral!
@@ -60,7 +60,7 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, JBBarC
     // slide out
     var delegate: CenterViewControllerDelegate?
     @IBAction func puppiesTapped(sender: AnyObject) {
-        println("toggleRightPanel")
+        print("toggleRightPanel")
         delegate?.toggleRightPanel?()
     }
     @IBOutlet weak var backButton: UIButton!
@@ -99,7 +99,7 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, JBBarC
         // Find initial N Value
         if pg.state == UIGestureRecognizerState.Began {
             temp_n_values = n_values
-            println("1n \(n_values)")
+            print("1n \(n_values)")
         }
         
         /**********************************/
@@ -178,13 +178,13 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, JBBarC
     // Double Tap Gesture to Play/Pause Graph
     @IBOutlet var doubleTapGesture: UITapGestureRecognizer!
     @IBAction func doubleTapGesture(sender: UITapGestureRecognizer) {
-        println("DoubleTap")
+        print("DoubleTap")
         
         // Play
         if !timer.valid {
-            timer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("refreshValues"), userInfo: nil, repeats: true)
+            timer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: #selector(CenterViewController.refreshValues), userInfo: nil, repeats: true)
             
-            graphRefreshTimer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("refreshGraph"), userInfo: nil, repeats: true)
+            graphRefreshTimer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: #selector(CenterViewController.refreshGraph), userInfo: nil, repeats: true)
         }
             
         // Pause
@@ -245,13 +245,13 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, JBBarC
     
     func setupGraph() {
         
-        var minGluc = BEMAverageLine()
+        let minGluc = BEMAverageLine()
         minGluc.yValue = 3
         minGluc.enableAverageLine = true
         minGluc.color = UIColor(red: 46/255, green: 204/255, blue: 113/255, alpha: 0.2)
         minGluc.dashPattern = [5]
         
-        var maxGluc = BEMAverageLine()
+        let maxGluc = BEMAverageLine()
         maxGluc.yValue = 10
         maxGluc.enableAverageLine = true
         maxGluc.color = UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 0.2)
@@ -430,7 +430,7 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, JBBarC
     
     func setupGI() {
         // Amount of 5 minute intervals in a day
-        var capacity = 24 * 60 / 5
+        let capacity = 24 * 60 / 5
         
         // Initialise arrays
         if time.count == 0 {
@@ -440,13 +440,13 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, JBBarC
         }
         
         if glucoseLevels.count == 0 {
-            for x in 0...capacity-1 {
+            for _ in 0...capacity-1 {
                 glucoseLevels.addObject(0 as Float)
             }
         }
         
         if insulinLevels.count == 0 {
-            for x in 0...capacity-1 {
+            for _ in 0...capacity-1 {
                 insulinLevels.addObject(0 as Float)
             }
         }
@@ -467,17 +467,17 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, JBBarC
     func setupTimers() {
         
         if !timer.valid {
-            timer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("refreshValues"), userInfo: nil, repeats: true)
+            timer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: #selector(CenterViewController.refreshValues), userInfo: nil, repeats: true)
         }
         
-        graphRefreshTimer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("refreshGraph"), userInfo: nil, repeats: true)
+        graphRefreshTimer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: #selector(CenterViewController.refreshGraph), userInfo: nil, repeats: true)
     }
     
     // Gets new values from BT or WiFi
     func refreshValues() {
         if sim {
-            var gluc:Float = Float(Int(arc4random_uniform(10)) + 3)
-            var insu:Float = Float(arc4random_uniform(10))/10.00
+            let gluc:Float = Float(Int(arc4random_uniform(10)) + 3)
+            let insu:Float = Float(arc4random_uniform(10))/10.00
             
             glucoseLevels.removeObjectAtIndex(0)
             insulinLevels.removeObjectAtIndex(0)
@@ -489,85 +489,82 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, JBBarC
         if wifi {
             
             // API URL
-            var api = "https://ic-yoda.appspot.com/_ah/api/icYodaApi/v1/glucInsuValues"
+            let api = "https://ic-yoda.appspot.com/_ah/api/icYodaApi/v1/glucInsuValues"
         
             // Request
-            var request = NSMutableURLRequest(URL: NSURL(string: api)!)
-            var session = NSURLSession.sharedSession()
+            let request = NSMutableURLRequest(URL: NSURL(string: api)!)
+            let session = NSURLSession.sharedSession()
             request.HTTPMethod = "POST"
             
             // Set request parameters
             var params = [String:String]()
-//            params["n"] = "\((n_values+1) * 3 * 12)"
             params["n"] = "3"
-            var err: NSError?
-            request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: nil, error: &err)
+            do {
+                request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: [])
+            } catch let error as NSError {
+                request.HTTPBody = nil
+            }
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.addValue("application/json", forHTTPHeaderField: "Accept")
             
-            // Send Request
-            var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+            let taskData = session.dataTaskWithRequest(request, completionHandler: {(data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
                 
-                var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
-                var err: NSError?
-                
-                // if no data
-                if data == nil {
-                    println("ERROR")
-                    return
-                }
-                
-                // Create JSON object
-                var json = NSJSONSerialization.JSONObjectWithData(data!, options: .MutableLeaves, error: &err) as? NSDictionary
-                
-                // Did the JSONObjectWithData constructor return an error? If so, log the error to the console
-                if(err != nil) {
-                    println(err!.localizedDescription)
-                    let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                    println("Error could not parse JSON: '\(jsonStr)'")
+                if (data != nil) {
+                    let result = NSString(data: data! , encoding: NSUTF8StringEncoding)
+//                    print("\(result!)")
                     
-                    // WiFi not available
+                    // convert String to NSData
+                    let jsonData: NSData = result!.dataUsingEncoding(NSUTF8StringEncoding)!
                     
-                }
-                else {
-                    // The JSONObjectWithData constructor didn't return an error. But, we should still
-                    // check and make sure that json has a value using optional binding.
-                    if let parseJSON = json {
-                        // Okay, the parsedJSON is here, let's get the values
-                        var items = parseJSON["items"] as! NSArray
-                        //                    println("Items: \(items)")
-                        println("JSON from WIFI")
-                        dispatch_async(dispatch_get_main_queue()) {
-                            for item in items {
-                                var date = item["date"] as! String
-                                if  date > startDateTime && date > lastValueDate {
-                                    let gluc = (item["gluc"] as! NSString).floatValue
-                                    glucoseLevels.removeObjectAtIndex(0)
-                                    glucoseLevels.addObject(gluc)
-                                    
-                                    let insu = (item["insu"] as! NSString).floatValue
-                                    insulinLevels.removeObjectAtIndex(0)
-                                    insulinLevels.addObject(insu)
-                                    
-                                    lastValueDate = date
+                    // convert NSData to 'AnyObject'
+                    do {
+                        let parseJSON = try NSJSONSerialization.JSONObjectWithData(jsonData, options: .AllowFragments) as? NSDictionary
+                        if let parseJSON = parseJSON {
+                            // Okay, the parsedJSON is here, let's get the values
+                            let items = parseJSON["items"] as! NSArray
+//                            print("Items: \(items)")
+                            print("JSON from WIFI")
+                            dispatch_async(dispatch_get_main_queue()) {
+                                for item in items {
+                                    let date = item["date"] as! String
+                                    if  date > startDateTime && date > lastValueDate {
+                                        let gluc = (item["gluc"] as! NSString).floatValue
+//                                        print(gluc,item["gluc"] as! NSString)
+                                        glucoseLevels.removeObjectAtIndex(0)
+                                        glucoseLevels.addObject(gluc)
+                                        
+                                        let insu = (item["insu"] as! NSString).floatValue
+                                        insulinLevels.removeObjectAtIndex(0)
+                                        insulinLevels.addObject(insu)
+//                                        print(insu,item["insu"] as! NSString)
+                                        lastValueDate = date
+                                    }
                                 }
                             }
+//                            print(glucoseLevels)
+//                            print(insulinLevels)
                         }
+                        else {
+                            // Woa, okay the json object was nil, something went worng. Maybe the server isn't running?
+                            let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                            print("Error could not parse JSON: \(jsonStr)")
+                        }
+                    } catch _ as NSError {
+                        
                     }
-                    else {
-                        // Woa, okay the json object was nil, something went worng. Maybe the server isn't running?
-                        let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding)
-                        println("Error could not parse JSON: \(jsonStr)")
-                    }
+
+                }
+                else {   // we got an error
+                    print("Error getting stores :\(error!.localizedDescription)")
                 }
             })
             
-            task.resume()
+            taskData.resume()
         }
         
         else if bt {
-            println("JSON from BT")
-            var inbox = NSArray(array: inboxGI)
+            print("JSON from BT")
+            let inbox = NSArray(array: inboxGI)
             inboxGI.removeAllObjects()
             btDrawGraph(inbox)
             return
@@ -576,7 +573,7 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, JBBarC
     }
     func btDrawGraph(items:NSArray) {
         for item in items {
-            var date = item["date"] as! String
+            let date = item["date"] as! String
             if  date > startDateTime && date > lastValueDate {
                 let gluc = (item["gluc"] as! NSString).floatValue
                 glucoseLevels.removeObjectAtIndex(0)
@@ -635,28 +632,28 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, JBBarC
         
         if state == .IDLE {
             state = .SCANNING
-            println("Started scan ...")
+            print("Started scan ...")
             centralManager.scanForPeripheralsWithServices([UARTPeripheral.uartServiceUUID()], options:[CBCentralManagerScanOptionAllowDuplicatesKey: false as NSNumber])
         }
         else if state == .CONNECTED {
-            println("Connected")
+            print("Connected")
             connectBTTimer.invalidate()
         }
     }
 
-    func centralManagerDidUpdateState(central: CBCentralManager!) {
+    func centralManagerDidUpdateState(central: CBCentralManager) {
         if(central.state != CBCentralManagerState.PoweredOn){
-            println("centralManager powered off")
+            print("centralManager powered off")
             state = .IDLE
             return
         }
         
-        println("centralManager powered on")
-        connectBTTimer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: Selector("connectBT"), userInfo: nil, repeats: true)
+        print("centralManager powered on")
+        connectBTTimer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector: #selector(CenterViewController.connectBT), userInfo: nil, repeats: true)
     }
     
-    func centralManager(central: CBCentralManager!, didDiscoverPeripheral peripheral: CBPeripheral!, advertisementData: [NSObject : AnyObject]!, RSSI: NSNumber!) {
-        println("Did discover peripheral \(peripheral.name)")
+    func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
+        print("Did discover peripheral \(peripheral.name)")
         
         centralManager.stopScan()
         
@@ -664,8 +661,8 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, JBBarC
         centralManager.connectPeripheral(peripheral, options: [CBConnectPeripheralOptionNotifyOnDisconnectionKey: true])
     }
     
-    func centralManager(central: CBCentralManager!, didConnectPeripheral peripheral: CBPeripheral!) {
-        println("Did connect peripheral \(peripheral.name)")
+    func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
+        print("Did connect peripheral \(peripheral.name)")
         state = .CONNECTED
         
         if currentPeripheral.peripheral.isEqual(peripheral) {
@@ -673,8 +670,8 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, JBBarC
         }
     }
     
-    func centralManager(central: CBCentralManager!, didDisconnectPeripheral peripheral: CBPeripheral!, error: NSError!) {
-        println("Did disconnect peripheral \(peripheral.name)")
+    func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
+        print("Did disconnect peripheral \(peripheral.name)")
         
         state = .IDLE
         connectBT()
@@ -685,7 +682,7 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, JBBarC
     }
     
     func didReceiveData(string: String!) {
-        for c in string {
+        for c in string.characters {
             if (c != "\n" || c != "\r") {
                 inputBuffer += "\(c)"
             }
@@ -705,31 +702,31 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, JBBarC
         
         // Connection Settings Switched
         if (input.count == 1){
-            let connection = (input[0] as! NSString).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            let connection = (input[0] as NSString).stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
             
             switch connection {
             case "bt":
-                println("Switched to BT")
+                print("Switched to BT")
                 bt = true
                 wifi = false
             case "wifi":
-                println("Switched to WIFI")
+                print("Switched to WIFI")
                 bt = false
                 wifi = true
             default:
-                println("Unknown command '\(connection)'")
+                print("Unknown command '\(connection)'")
                 
             }
         }
         
         // Glucose and Insulin values
         else if input.count == 2 {
-            var glucose = input[0] as! NSString
-            var insulin = input[1] as! NSString
+            var glucose = input[0] as NSString
+            let insulin = input[1] as NSString
             
             //////////////////////////////////////////////////////////////////
-            var upperlimitgluc = 1.5 * (glucoseLevels.lastObject as! Float)
-            var lowerlimitgluc = 0.0 as Float
+            let upperlimitgluc = 1.5 * (glucoseLevels.lastObject as! Float)
+            let lowerlimitgluc = 0.0 as Float
             
             if (glucose.floatValue) > upperlimitgluc {
                 glucose = "\(glucoseLevels.lastObject as! Float)"
@@ -740,9 +737,9 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, JBBarC
             //////////////////////////////////////////////////////////////////
             
             var components = NSString(string: "\(NSDate())").componentsSeparatedByString(" ")
-            var datetime = "\(components[0])&\(components[1])"
+            let datetime = "\(components[0])&\(components[1])"
             
-            var output:NSDictionary = [
+            let output:NSDictionary = [
                 "date":datetime,
                 "gluc":glucose,
                 "insu":insulin,
@@ -770,8 +767,8 @@ class CenterViewController: UIViewController, BEMSimpleLineGraphDelegate, JBBarC
         formatter = NSDateFormatter()
         formatter.dateFormat = "HH:mm:ss.SSS"
         
-        var output:NSString = "[\(formatter.stringFromDate(NSDate()))] \(direction) \(string)"
+        let output:NSString = "[\(formatter.stringFromDate(NSDate()))] \(direction) \(string)"
         
-        println(output)
+        print(output)
     }
 }
